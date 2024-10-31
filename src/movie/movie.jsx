@@ -1,32 +1,50 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { getMovies } from "../api/moviesApi";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 const Movie = () => {
     const { movieid } = useParams();
     const [movie, setMovie] = useState({});
-    useEffect (() => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchQuery, setSearchQuery] = useState(searchParams.get("query") || ""); 
+    const navigate = useNavigate();
+
+    useEffect(() => {
         const fetchMovieDetails = async () => {
             const response = await getMovies(movieid);
             console.log(response)
             setMovie(response)
         }
         fetchMovieDetails()
-    },[])
+    }, [])
+
+    
+    const handleSearch = () => {
+        setSearchParams({ query: searchQuery });
+        navigate(`/?query=${searchQuery}`); 
+    };
+
+    // Redirects to homepage
+    const redirectHome = () => {
+        navigate("/");
+    }
+
     return (
         <div className="w-full bg-[#192026] text-white min-h-screen">
             <div className="container">
                 <div className="movie-container">
                     <header className="py-5 flex justify-between items-center w-full">
-                        <h1 className="font-poppins w-fit text-2xl">MovieDB</h1>
-                       <div className="flex items-center w-[45%]">
-                            {/* <button onClick={handleSearch}>Search</button> */}
+                        <h1 className="font-poppins w-fit text-2xl hover:cursor-pointer" onClick={redirectHome}>MovieDB</h1>
+                        <div className="flex items-center w-[45%]">
+                            <button onClick={handleSearch}>Search</button>
                             <input
                                 type="text"
                                 placeholder="Search for movies"
                                 class="bg-[#30363d] text-white p-2 ml-2 rounded-lg w-[500px]"
-                                // value={searchQuery}
-                                // onChange={(e) => setSearchQuery(e.target.value)}
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
                     </header>
@@ -38,7 +56,14 @@ const Movie = () => {
                         <div className="flex-col sm:w-[50%] m-8 justify-between p-3">
                             <div className="pb-3">
                                 <h1 className="font-bold w-fit mt-2 text-2xl">Genre</h1>
-                                <p className="sm:w-[80%] text-[#868686] text-lg">My genres here</p>
+                                <p className="sm:w-[80%] text-[#868686] text-lg">
+                                    {movie?.genres?.map((genre, index) => (
+                                        <span key={genre.id}>
+                                            {genre.name}
+                                            {index < movie.genres.length - 1 ? ", " : ""}
+                                        </span>
+                                    ))}
+                                </p>
                             </div>
                             <div className="pb-3">
                                 <h1 className="font-bold w-fit mt-2 text-2xl">Release Date</h1>

@@ -12,12 +12,15 @@ const Movies = () => {
     const [searchQuery, setSearchQuery] = useState(""); // null = all genres
     const [searchParams, setSearchParams] = useSearchParams();
     const page = searchParams.get("page") ? parseInt(searchParams.get("page")) : 1;
+
     const handleSearch = () => {
         setSearchParams({ query: searchQuery })
     }
+
     const handlePreviousPage = () => {
         setSearchParams({ page: page - 1 });
     }
+
     useEffect(() => {
         setIsLoading(true);
         const fetchMovies = async () => {
@@ -35,14 +38,21 @@ const Movies = () => {
 
         fetchMovies();
     }, [selectedGenre, searchParams, page]);
+
     const handleNextPage = () => {
         setSearchParams({ page: page + 1 });
     }
+
+    // Redirects to homepage
+    const redirectHome = () => {
+        navigate("/");
+    }
+
     return (
         <div className="w-full bg-[#192026] text-white min-h-screen">
             <div className="container">
                 <header className="py-5 flex justify-between items-center w-full">
-                    <h1 className="font-poppins w-fit text-2xl">MovieDB</h1>
+                    <h1 className="font-poppins w-fit text-2xl hover:cursor-pointer" onClick={redirectHome}>MovieDB</h1>
                     <div className="flex items-center w-[45%]">
                         <button onClick={handleSearch}>Search</button>
                         <input
