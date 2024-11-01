@@ -2,8 +2,7 @@ import { getAllMovies } from "../api/moviesApi"
 import { useState, useEffect } from "react"
 import { Await, useSearchParams } from "react-router-dom"
 import { Link } from "react-router-dom";
-import Loader from "../component/loading"
-
+import Loader from "../component/Loading.jsx"
 const Movies = () => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
