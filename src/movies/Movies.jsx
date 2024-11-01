@@ -1,7 +1,6 @@
 import { getAllMovies } from "../api/moviesApi"
 import { useState, useEffect } from "react"
-import { Await, useSearchParams } from "react-router-dom"
-import { Link } from "react-router-dom";
+import { useSearchParams, useNavigate, Link } from "react-router-dom"
 import Loader from "../component/Loading.jsx"
 
 const Movies = () => {
@@ -12,6 +11,7 @@ const Movies = () => {
     const [searchQuery, setSearchQuery] = useState(""); // null = all genres
     const [searchParams, setSearchParams] = useSearchParams();
     const page = searchParams.get("page") ? parseInt(searchParams.get("page")) : 1;
+    const navigate = useNavigate();
 
     const handleSearch = () => {
         setSearchParams({ query: searchQuery })
