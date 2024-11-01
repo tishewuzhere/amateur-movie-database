@@ -50,7 +50,7 @@ const Movies = () => {
 
     return (
         <div className="w-full bg-[#192026] text-white min-h-screen flex">
-            <div className="container mb-7">
+            <div className="container mb-12">
                 <header className="py-5 flex justify-between items-center w-full">
                     <h1 className="font-poppins w-fit text-2xl hover:cursor-pointer" onClick={redirectHome}>MovieDB</h1>
                     <div className="flex items-center w-[45%]">
@@ -115,7 +115,7 @@ const Movies = () => {
                         {movies.map(movie => (
                             // Route to movie.jsx
                             <Link to={`/movie/${movie.id}`} key={movie.id} className="flex flex-col items-center">
-                                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="rounded-lg" />
+                                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="No image avaliable" className="rounded-lg" />
                                 <h1 className="text-lg mt-2 text-center">{movie.title} <span>({movie.release_date.substring(0, 4)})</span>
                                 </h1>
                             </Link>

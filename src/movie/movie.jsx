@@ -8,7 +8,7 @@ const Movie = () => {
     const { movieid } = useParams();
     const [movie, setMovie] = useState({});
     const [searchParams, setSearchParams] = useSearchParams();
-    const [searchQuery, setSearchQuery] = useState(searchParams.get("query") || ""); 
+    const [searchQuery, setSearchQuery] = useState(searchParams.get("query") || "");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,10 +20,10 @@ const Movie = () => {
         fetchMovieDetails()
     }, [])
 
-    
+
     const handleSearch = () => {
         setSearchParams({ query: searchQuery });
-        navigate(`/?query=${searchQuery}`); 
+        navigate(`/?query=${searchQuery}`);
     };
 
     // Redirects to homepage
@@ -43,8 +43,8 @@ const Movie = () => {
                                 type="text"
                                 placeholder="Search for movies"
                                 class="bg-[#30363d] text-white p-2 ml-2 rounded-lg w-[500px]"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
                     </header>
