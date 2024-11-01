@@ -32,7 +32,7 @@ const Movie = () => {
     }
 
     return (
-        <div className="w-full bg-[#192026] text-white min-h-screen">
+        <div className="w-full bg-[#192026] text-white min-h-screen flex">
             <div className="container">
                 <div className="movie-container">
                     <header className="py-5 flex justify-between items-center w-full">

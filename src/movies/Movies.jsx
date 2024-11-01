@@ -49,8 +49,8 @@ const Movies = () => {
     }
 
     return (
-        <div className="w-full bg-[#192026] text-white min-h-screen">
-            <div className="container">
+        <div className="w-full bg-[#192026] text-white min-h-screen flex">
+            <div className="container mb-7">
                 <header className="py-5 flex justify-between items-center w-full">
                     <h1 className="font-poppins w-fit text-2xl hover:cursor-pointer" onClick={redirectHome}>MovieDB</h1>
                     <div className="flex items-center w-[45%]">
