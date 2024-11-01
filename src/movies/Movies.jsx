@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { Await, useSearchParams } from "react-router-dom"
 import { Link } from "react-router-dom";
 import Loader from "../component/Loading.jsx"
+
 const Movies = () => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +19,11 @@ const Movies = () => {
 
     const handlePreviousPage = () => {
         setSearchParams({ page: page - 1 });
+    }
+
+    // Redirects to homepage
+    const redirectHome = () => {
+        navigate("/");
     }
 
     useEffect(() => {
@@ -40,11 +46,6 @@ const Movies = () => {
 
     const handleNextPage = () => {
         setSearchParams({ page: page + 1 });
-    }
-
-    // Redirects to homepage
-    const redirectHome = () => {
-        navigate("/");
     }
 
     return (
@@ -114,7 +115,7 @@ const Movies = () => {
                         {movies.map(movie => (
                             // Route to movie.jsx
                             <Link to={`/movie/${movie.id}`} key={movie.id} className="flex flex-col items-center">
-                                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="rounded-lg"/>
+                                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="rounded-lg" />
                                 <h1 className="text-lg mt-2 text-center">{movie.title} <span>({movie.release_date.substring(0, 4)})</span>
                                 </h1>
                             </Link>
