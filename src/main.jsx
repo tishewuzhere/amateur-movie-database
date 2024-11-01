@@ -6,7 +6,7 @@ import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename='/amateur-movie-database/'>
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </StrictMode>
